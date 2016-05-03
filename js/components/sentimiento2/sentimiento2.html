@@ -1,0 +1,25 @@
+<!-- Controlador de seleccion -->
+<!-- Se efectos del globo de seleccion -->
+<script>
+    $(document).ready(function() {
+        $(".bubble").hide();
+    });
+
+</script>
+<!-- Toda la vista -->
+<div class="container inputcontainer">
+    <div class="centrar">
+        <div class="bubble">
+            <input type="button" class="btn btn-5" name="showSelectedText1">
+            <input type="button" class="btn btn-4" name="showSelectedText2">
+            <input type="button" class="btn btn-3" name="showSelectedText3">
+            <input type="button" class="btn btn-2" name="showSelectedText4">
+            <input type="button" class="btn btn-1" name="showSelectedText5">
+            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <p>Registro <b id="startIndex"></b> a <b id="endIndex"></b></p>
+        <textarea auto-height id="ta" ng-controller="globo" class="encenderBubble panel panel-default text-right-pers" readonly>{{quepasa}}</textarea>
+    </div>
+</div>
+<next></next>
+<skip></skip>
