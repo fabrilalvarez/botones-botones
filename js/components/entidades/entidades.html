@@ -2,7 +2,16 @@
     <div class="panel panel-default">
         <p class="text-right-pers">AQUI VA UN TEXTO PARA ANALIZAR</p>
     </div>
-    <generador-de-botones></generador-de-botones>
+    <div ng-controller="buttonsOptions">
+        <table>
+            <tr>
+                <td style="padding:10px" ng-repeat="tema in temas">
+                    <botones addbuttons padre="{{tema}}" tipo="{{tiposBoton[$index]}}" funcion="mifuncion"></botones>
+                </td>
+            </tr>
+        </table>
+        <div id="espacio-para-botones"></div>
+    </div>
 </div>
 <next></next>
 <skip></skip>

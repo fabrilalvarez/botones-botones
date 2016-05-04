@@ -2,24 +2,51 @@ angular.module("entidades", [])
     .component("entidades", {
         templateUrl: "./js/components/entidades/entidades.html"
     })
-    .component('generadorDeBotones', {
-        template: [
-            '<div ng-controller="buttonsGenerator">',
-            '<table>',
-            '<tr>',
-            '<td style="padding-left:10px" ng-repeat = "tema in temas">',
-            '<button ng-class="tiposBoton[$index]" type="button" class="btn btn-sm">{{ tema }}</button>',
-            '</td>',
-            '</tr>',
-            '</table>',
-            '</div>'
-        ].join('')
+    .directive('addbuttons', function ($compile) {
+        return function (scope, element) {
+            element.bind("click", function () {
+                angular
+                    .element(document.getElementById('espacio-para-botones'))
+                    .append($compile('<botones addbuttons padre="{{tema}}" tipo="{{tiposBoton[$index]}}" funcion="mifuncion"></botones><br>')(scope));
+            });
+        };
     })
-    .controller('buttonsGenerator', buttonsGenerator);
+    .directive('botones', botones)
+    .controller('buttonsOptions', buttonsOptions);
 
 /* funciones */
-function buttonsGenerator($scope) {
+function botones() {
+    return {
+        restrict: 'E',
+        scope: {
+            padre: '@',
+            tipo: '@',
+            funcion: '@'
+        },
+        template: '<button ng-class="tipo" ng-click="funcion" type="button" class="btn btn-sm">{{ padre }}</button>'
+    }
+}
+
+function buttonsOptions($scope) {
     $scope.tiposBoton = [
+        'btn-default',
+        'btn-primary',
+        'btn-success',
+        'btn-info',
+        'btn-warning',
+        'btn-danger',
+        'btn-default',
+        'btn-primary',
+        'btn-success',
+        'btn-info',
+        'btn-warning',
+        'btn-danger',
+        'btn-default',
+        'btn-primary',
+        'btn-success',
+        'btn-info',
+        'btn-warning',
+        'btn-danger',
         'btn-default',
         'btn-primary',
         'btn-success',
@@ -28,12 +55,12 @@ function buttonsGenerator($scope) {
         'btn-danger'
     ];
     $scope.temas = [
-        'Politica',
-        'Deportes',
-        'Ciencia',
-        'Educación',
-        'Economía',
-        'Cultura'
+        'politica',
+        'deportes',
+        'ciencia',
+        'educación',
+        'economía',
+        'cultura'
     ];
     /* titulos */
     $scope.politica = ['Elecciones Generales', 'Partidos', 'España', 'Galicia', 'cataluña', 'Andalucía', 'Comunidad Valenciana', 'País Vasco'];
