@@ -5,9 +5,13 @@ angular.module("entidades", [])
     .component('generadorDeBotones', {
         template: [
             '<div ng-controller="buttonsGenerator">',
-            '<div ng-repeat = "tema in temas">',
+            '<table>',
+            '<tr>',
+            '<td style="padding-left:10px" ng-repeat = "tema in temas">',
             '<button ng-class="tiposBoton[$index]" type="button" class="btn btn-sm">{{ tema }}</button>',
-            '</div>',
+            '</td>',
+            '</tr>',
+            '</table>',
             '</div>'
         ].join('')
     })
