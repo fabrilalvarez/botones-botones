@@ -1,14 +1,12 @@
-<div class="sentimiento centrar">
+<div class="centrar" ng-controller="globoControlador">
     <p>Registro</p>
-    <div class="panel panel-default">
-        <p class="text-right-pers">AQUI VA UN TEXTO PARA ANALIZAR</p>
-    </div>
+    <text-panel></text-panel>
     <div>
-        <button type="button" class="btn btn-1"></button>
-        <button type="button" class="btn btn-2"></button>
-        <button type="button" class="btn btn-3"></button>
-        <button type="button" class="btn btn-4"></button>
-        <button type="button" class="btn btn-5"></button>
+        <div ng-repeat="conf in config">
+            <input type="button" class="{{conf}}" ng-click="enviar($index)">
+        </div>
+        <leyenda></leyenda>
     </div>
 </div>
+<next></next>
 <skip></skip>

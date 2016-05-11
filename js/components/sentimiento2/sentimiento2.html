@@ -1,24 +1,56 @@
-<!-- Controlador de seleccion -->
 <!-- Se efectos del globo de seleccion -->
 <script>
     $(document).ready(function() {
+        $encendido = true;
         $(".bubble").hide();
+        $(".encenderBubble").on("click", function() {
+            if ($encendido) {
+                $(".bubble").show(250);
+                $encendido = false;
+            } else {
+                $(".bubble").hide(250);
+                $encendido = true;
+            }
+        });
     });
 
 </script>
 <!-- Toda la vista -->
 <div class="container inputcontainer">
-    <div class="centrar">
-        <div class="bubble">
-            <input type="button" class="btn btn-5" name="showSelectedText1">
-            <input type="button" class="btn btn-4" name="showSelectedText2">
-            <input type="button" class="btn btn-3" name="showSelectedText3">
-            <input type="button" class="btn btn-2" name="showSelectedText4">
-            <input type="button" class="btn btn-1" name="showSelectedText5">
+    <div class="centrar" ng-controller="tablaControlador">
+        <div class="bubble" sytle="display:none;">
+            <input type="button" class="btn btn-5" name="showSelectedText4" ng-click="addRow()">
+            <input type="button" class="btn btn-4" name="showSelectedText3" ng-click="addRow()">
+            <input type="button" class="btn btn-3" name="showSelectedText2" ng-click="addRow()">
+            <input type="button" class="btn btn-2" name="showSelectedText1" ng-click="addRow()">
+            <input type="button" class="btn btn-1" name="showSelectedText0" ng-click="addRow()">
             <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <p>Registro <b id="startIndex"></b> a <b id="endIndex"></b></p>
-        <textarea auto-height id="ta" ng-controller="globo" class="encenderBubble panel panel-default text-right-pers" readonly>{{quepasa}}</textarea>
+        <textarea auto-height id="ta" ng-controller="textpanel" class="encenderBubble panel panel-default text-right-pers" readonly>{{quepasa}}</textarea>
+        <leyenda></leyenda>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th width="200">Text</th>
+                    <th width="200">Sentimiento</th>
+                    <th width="200">Cancelar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rows">
+                    <!--
+                            0 = startIndex
+                            1 = endIndex
+                            2 = texto
+                            3 = puntuación del botón
+                        -->
+                    <td>{{row | split:'#$':2}}</td>
+                    <td>{{row | split:'#$':3}}</td>
+                    <td>[<a href ng-click="removeItem($index)">X</a>]</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <next></next>

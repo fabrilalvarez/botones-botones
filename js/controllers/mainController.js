@@ -1,7 +1,7 @@
 angular
     .module('mainController', [])
     .controller('signUP', signUP)
-    .controller('globo', globo)
+    .controller('textpanel', textpanel)
     .controller('sentimientoController', sentimientoController)
     .controller('categoriasController', categoriasController)
     .controller('entidadesController', entidadesController)
@@ -12,18 +12,11 @@ angular
 function signUP($scope) {
     $scope.action = "exitoso!";
 }
-
+/** Esta funcion se pueden optimizar, se dejan así para posibles usos distintos en el futuro */
 function sentimientoController($scope, $location) {
     $scope.nombre = "Sentimiento";
     $scope.irSentimiento = function () {
         $location.url('/sentimiento');
-    };
-}
-/** Esta funcion se pueden optimizar, se dejan así para posibles usos distintos en el futuro */
-function sentimiento2Controller($scope, $location) {
-    $scope.nombre = "Sentimiento2";
-    $scope.irSentimiento = function () {
-        $location.url('/sentimiento2');
     };
 }
 /** Esta funcion se pueden optimizar, se dejan así para posibles usos distintos en el futuro */
@@ -40,9 +33,16 @@ function entidadesController($scope, $location) {
         $location.url('/entidades');
     };
 }
-
+/** Esta funcion se pueden optimizar, se dejan así para posibles usos distintos en el futuro */
+function sentimiento2Controller($scope, $location) {
+    $scope.nombre = "Sentimiento2";
+    $scope.irSentimiento = function () {
+        $location.url('/sentimiento2');
+    };
+}
+/** Esta funcion se pueden optimizar, se dejan así para posibles usos distintos en el futuro */
 function loginController($scope, $location) {
-    $scope.nombre = "login";
+    $scope.nombre = "Login";
     $scope.irLogin = function () {
         $location.url('/login');
     };
@@ -51,46 +51,7 @@ function loginController($scope, $location) {
     };
 }
 
-/** IMPORTANTE detector mouse */
-function globo($scope) {
+/** Estaría bien que esto estubiera dentro del archivo textPanel.js pero en la vista sentimiento2 se pierde el controlador, así que por ahora se va a quedar así. */
+function textpanel($scope) {
     $scope.quepasa = "AQUI VA UN TEXTO PARA ANALIZAR";
-    var i;
-    $scope.list = [];
-    for (i = 0; i < 24; i++) {
-        $scope.list.push(i);
-    }
-    $scope.globoBotonesPosicion = 0;
-    $scope.onmouseover = function (i) {
-        $scope.globoBotonesPosicion = i;
-    }
-    $scope.$watch('globoBotonesPosicion', function (n, o) {
-        $("#" + o).removeClass("globoBotones");
-        $("#" + n).addClass("globoBotones");
-    });
 }
-/*
-function sentimientoController($scope, $location) {
-    $scope.nombre = "sentimiento";
-    $scope.irSentimiento = function () {
-        $location.url('/sentimiento');
-    };
-}
-function sentimientoController($scope, $location) {
-    $scope.nombre = "sentimiento";
-    $scope.irSentimiento = function () {
-        $location.url('/sentimiento');
-    };
-}
-function sentimientoController($scope, $location) {
-    $scope.nombre = "sentimiento";
-    $scope.irSentimiento = function () {
-        $location.url('/sentimiento');
-    };
-}
-function sentimientoController($scope, $location) {
-    $scope.nombre = "sentimiento";
-    $scope.irSentimiento = function () {
-        $location.url('/sentimiento');
-    };
-}
-*/

@@ -1,38 +1,13 @@
 <div class="centrar">
-    <table style="width:100%">
+    <table style="width:100%" ng-controller="opciones">
         <tr>
-            <td rowspan="6">
-                <div class="panel panel-default">
-                    <p class="text-right-pers">AQUI VA UN TEXTO PARA ANALIZAR</p>
-                </div>
-            </td>
-            <td align="right">
-                <button type="button" class="btn btn-default btn-sz">Política</button>
+            <td rowspan="{{temas.length+1}}">
+                <text-panel></text-panel>
             </td>
         </tr>
-        <tr>
+        <tr ng-repeat="tema in temas">
             <td align="right">
-                <button type="button" class="btn btn-primary btn-sz">Deportes</button>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <button type="button" class="btn btn-success btn-sz">Ciencia</button>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <button type="button" class="btn btn-info btn-sz">Educación</button>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <button type="button" class="btn btn-warning btn-sz">Economía</button>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <button type="button" class="btn btn-danger btn-sz">Cultura</button>
+                <button class="btn btn-sm {{tiposBoton[$index]}}" ng-click="enviar()">{{tema}}</button>
             </td>
         </tr>
     </table>

@@ -1,17 +1,48 @@
+<script>
+    $(document).ready(function() {
+        $("#ocultame").hide();
+        var on = true;
+        var valorButton = $("#quepasa").text();
+        var repeat = "ng-repeat-start";
+        var filter = "dato in datos | filter: '" + valorButton + "'";
+        $("#damefiltros").attr(repeat, filter);
+        $("#quepasa").click(function() {
+            if (on == false) {
+                $("#ocultame").hide();
+                on = true;
+            } else {
+                $("#ocultame").show();
+                on = false;
+            }
+        });
+    });
+
+</script>
+
 <div class="centrar">
-    <div class="panel panel-default">
-        <p class="text-right-pers">AQUI VA UN TEXTO PARA ANALIZAR</p>
-    </div>
+    <text-panel></text-panel>
     <div ng-controller="buttonsOptions">
+        <button id="quepasa">Política</button>
+        <hr>
         <table>
             <tr>
-                <td style="padding:10px" ng-repeat="tema in temas">
-                    <botones addbuttons padre="{{tema}}" tipo="{{tiposBoton[$index]}}" funcion="mifuncion"></botones>
+                <td ng-repeat="dato in datos">
+                    <botones myid="{{$index}}" padre="{{dato.tema}}" tipo="{{tiposBoton[$index]}}" data-ng-click="mifuncion()"></botones>
                 </td>
             </tr>
         </table>
-        <div id="espacio-para-botones"></div>
+        <hr>
+        <table id="ocultame">
+            <tr id="damefiltros">
+            </tr>
+            <tr ng-repeat-end>
+                <td ng-repeat="item in dato.items">
+                    <botones padre="{{item.titulo}}" tipo="{{tiposBoton[$index]}}" data-ng-click="mifuncion('hola')"></botones>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
-<next></next>
+<next>
+</next>
 <skip></skip>

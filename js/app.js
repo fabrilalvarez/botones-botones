@@ -2,39 +2,44 @@ var app = angular
     .module("mockupsApp", [
         'ngRoute',
         'menuBar',
+        'textPanel',
+        'leyenda',
         'footer',
         'skip',
+        'next',
         'login',
+        'globo',
+        'signup',
+        'sentimiento',
         'categorias',
         'entidades',
-        'sentimiento',
         'sentimiento2',
         'mainController']);
 
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/login', {
-            templateUrl: 'js/components/login/login.html',
+            templateUrl: '/js/components/login/login.html',
             controller: 'indexController'
         })
         .when('/sentimiento', {
-            templateUrl: 'js/components/sentimiento/sentimiento.html',
+            templateUrl: '/js/components/sentimiento/sentimiento.html',
             controller: 'sentimientoController'
         })
         .when('/categorias', {
-            templateUrl: 'js/components/categorias/categorias.html',
+            templateUrl: '/js/components/categorias/categorias.html',
             controller: 'categoriasController'
         })
         .when('/entidades', {
-            templateUrl: 'js/components/entidades/entidades.html',
+            templateUrl: '/js/components/entidades/entidades.html',
             controller: 'entidadesController'
         })
         .when('/sentimiento2', {
-            templateUrl: 'js/components/sentimiento2/sentimiento2.html',
+            templateUrl: '/assets/js/components/sentimiento2/sentimiento2.html',
             controller: 'sentimiento2Controller'
         })
         .when('/signup', {
-            templateUrl: 'js/components/signup/signup.html',
+            templateUrl: '/js/components/signup/signup.html',
             controller: 'signup'
         })
         .otherwise({

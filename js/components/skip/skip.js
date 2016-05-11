@@ -1,4 +1,4 @@
 angular.module("skip", [])
     .component("skip", {
-        templateUrl: "./js/components/skip/skip.html"
+        templateUrl: "/js/components/skip/skip.html"
     });

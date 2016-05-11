@@ -2,32 +2,28 @@ angular.module("entidades", [])
     .component("entidades", {
         templateUrl: "./js/components/entidades/entidades.html"
     })
-    .directive('addbuttons', function ($compile) {
-        return function (scope, element) {
-            element.bind("click", function () {
-                angular
-                    .element(document.getElementById('espacio-para-botones'))
-                    .append($compile('<botones addbuttons padre="{{tema}}" tipo="{{tiposBoton[$index]}}" funcion="mifuncion"></botones><br>')(scope));
-            });
-        };
-    })
     .directive('botones', botones)
     .controller('buttonsOptions', buttonsOptions);
 
 /* funciones */
 function botones() {
+    var tpl = '<button id="{{myid}}button" ng-class="tipo" data-ng-click="funcion" type="button" class="btn btn-sm">{{ padre }}</button>';
     return {
         restrict: 'E',
         scope: {
             padre: '@',
             tipo: '@',
-            funcion: '@'
+            myid: '@',
+            funcion: '&ngClick'
         },
-        template: '<button ng-class="tipo" ng-click="funcion" type="button" class="btn btn-sm">{{ padre }}</button>'
+        template: tpl
     }
 }
 
 function buttonsOptions($scope) {
+    $scope.mifuncion = function () {
+       
+    }
     $scope.tiposBoton = [
         'btn-default',
         'btn-primary',
@@ -54,25 +50,138 @@ function buttonsOptions($scope) {
         'btn-warning',
         'btn-danger'
     ];
-    $scope.temas = [
-        'politica',
-        'deportes',
-        'ciencia',
-        'educación',
-        'economía',
-        'cultura'
+    $scope.datos = [
+        {
+            tema: 'Política',
+            items: [
+                {
+                    id: 1,
+                    titulo: 'Elecciones Generales'
+                }, {
+                    id: 2,
+                    titulo: 'Partidos'
+                }, {
+                    id: 3,
+                    titulo: 'España'
+                }, {
+                    id: 4,
+                    titulo: 'Galicia'
+                }, {
+                    id: 5,
+                    titulo: 'Cataluña'
+                }, {
+                    id: 6,
+                    titulo: 'Andalucía'
+                }, {
+                    id: 7,
+                    titulo: 'Comunidad Valenciana'
+                }, {
+                    id: 8,
+                    titulo: 'País Vasco'
+                }
+            ]
+        },
+        {
+            tema: 'Deportes',
+            items: [
+                {
+                    id: 1,
+                    titulo: 'Futbol'
+                }, {
+                    id: 2,
+                    titulo: 'Tenis'
+                }, {
+                    id: 3,
+                    titulo: 'Baloncesto'
+                }, {
+                    id: 4,
+                    titulo: 'Fórmula1'
+                }, {
+                    id: 5,
+                    titulo: 'Motociclismo'
+                }
+            ]
+        },
+        {
+            tema: 'Ciencia',
+            items: [
+                {
+                    id: 1,
+                    titulo: 'Ciencia & Tecnología'
+                }
+            ]
+        },
+        {
+            tema: 'Educacion',
+            items: [
+                {
+                    id: 1,
+                    titulo: 'Primaria'
+                }, {
+                    id: 2,
+                    titulo: 'ESO'
+                }, {
+                    id: 3,
+                    titulo: 'Bachillerato'
+                }, {
+                    id: 4,
+                    titulo: 'Universidad'
+                }, {
+                    id: 5,
+                    titulo: 'FP'
+                }, {
+                    id: 6,
+                    titulo: 'FPS'
+                }
+            ]
+        },
+        {
+            tema: 'Economía',
+            items: [
+                {
+                    id: 1,
+                    titulo: 'Europa'
+                }, {
+                    id: 2,
+                    titulo: 'Mercado'
+                }, {
+                    id: 3,
+                    titulo: 'Empresas'
+                }, {
+                    id: 4,
+                    titulo: 'Vivienda'
+                }, {
+                    id: 5,
+                    titulo: 'Cotizaciones'
+                }, {
+                    id: 5,
+                    titulo: 'Ibex'
+                }
+            ]
+        },
+        {
+            tema: 'cultura',
+            items: [
+                {
+                    id: 1,
+                    titulo: 'Cine'
+                }, {
+                    id: 2,
+                    titulo: 'Música'
+                }, {
+                    id: 3,
+                    titulo: 'Series'
+                }, {
+                    id: 4,
+                    titulo: 'Libros'
+                }, {
+                    id: 5,
+                    titulo: 'Arte'
+                }, {
+                    id: 5,
+                    titulo: 'Teatro'
+                }
+            ]
+        }
     ];
-    /* titulos */
-    $scope.politica = ['Elecciones Generales', 'Partidos', 'España', 'Galicia', 'cataluña', 'Andalucía', 'Comunidad Valenciana', 'País Vasco'];
-    $scope.deportes = ['futbol', 'tenis', 'baloncesto', 'formula1', 'motociclismo'];
-    $scope.ciencia = ['Ciencia & Tecnología'];
-    $scope.educacion = ['Primaria', 'ESO', 'Bachillerato', 'Universidad', 'FP', 'FPS'];
-    $scope.economia = ['Europa', 'Mercado', 'Empresas', 'Vivienda', 'Cotizaciones', 'Ibex', 'Bolsa'];
-    $scope.cultura = ['cine', 'musica', 'series', 'libros', 'arte', 'teatro'];
-    /* deportes */
-    $scope.futbol = ['Real Madrid', 'Barcelona', 'Celta'];
-    $scope.tenis = ['Masculino', 'Femenino'];
-    $scope.baloncesto = ['Equipos', 'NBA'];
-    $scope.formula1 = ['Fórmula1'];
-    $scope.motociclismo = ['Motociclismo'];
 }
